@@ -4,19 +4,20 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Browser {
 
-    private static volatile RemoteWebDriver driver;
+    private static ThreadLocal<RemoteWebDriver> thread = new InheritableThreadLocal<RemoteWebDriver>();
 
     private Browser(){}
 
     public static RemoteWebDriver getDriver() {
-        if(driver == null){
+        if(thread.get() == null){
             synchronized (Browser.class){
-                if(driver == null){
+                if(thread.get() == null){
                     String driverType = System.getProperty("driverType");
-                    return driver = DriverFactory.createDriver(driverType);
+                    thread.set(DriverFactory.createDriver(driverType));
+                    return thread.get();
                 }
             }
         }
-        return driver;
+        return thread.get();
     }
 }
