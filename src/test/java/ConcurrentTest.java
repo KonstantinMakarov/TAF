@@ -1,13 +1,13 @@
 import com.kanstantsin.taf.browser.Browser;
 import com.kanstantsin.taf.element.Element;
+import com.kanstantsin.taf.utils.TimeoutUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SimpleTest {
-
+public class ConcurrentTest {
     RemoteWebDriver driver;
 
     @BeforeClass
@@ -21,8 +21,10 @@ public class SimpleTest {
         new Element(By.xpath("//input[@value='Мне пашчасціць']")).click();
     }
 
-    @AfterClass
+    @AfterTest
     public void shutDown(){
+        TimeoutUtils.sleepInSeconds(10);
         driver.quit();
     }
 }
+
