@@ -1,6 +1,6 @@
 package com.kanstantsin.taf.browser;
 
-import com.kanstantsin.taf.browser.customzer.*;
+import com.kanstantsin.taf.browser.customizer.*;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;

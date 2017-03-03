@@ -25,4 +25,16 @@ public class WaiterUtils {
     private static String getDocumentReadyState() {
         return (String) (Browser.getDriver()).executeScript("return document.readyState");
     }
+
+    public static void sleepInMilliseconds(int mSeconds) {
+        try {
+            Thread.sleep(mSeconds);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void sleepInSeconds(int seconds) {
+        sleepInMilliseconds(1000 * seconds);
+    }
 }

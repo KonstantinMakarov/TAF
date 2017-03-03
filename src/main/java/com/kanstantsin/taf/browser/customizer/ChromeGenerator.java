@@ -1,4 +1,4 @@
-package com.kanstantsin.taf.browser.customzer;
+package com.kanstantsin.taf.browser.customizer;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;

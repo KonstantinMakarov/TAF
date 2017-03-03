@@ -1,4 +1,4 @@
-package com.kanstantsin.taf.browser.customzer;
+package com.kanstantsin.taf.browser.customizer;
 
 import com.google.common.base.Optional;
 import com.kanstantsin.taf.utils.property.GridPropertiesProvider;

@@ -1,6 +1,7 @@
 package com.kanstantsin.taf.element;
 
 import com.kanstantsin.taf.browser.Browser;
+import com.kanstantsin.taf.utils.WaiterUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,6 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.kanstantsin.taf.utils.WaiterUtils;
 
 public class Element {
 
@@ -33,5 +33,13 @@ public class Element {
         Wait<WebDriver> wait = new WebDriverWait(Browser.getDriver(), WaiterUtils.DEFAULT_WAIT_TIME);
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
         webElement = Browser.getDriver().findElement(selector);
+        highlightElement();
+    }
+
+    public void highlightElement() {
+        final String bgColor = webElement.getCssValue("background");
+        (Browser.getDriver()).executeScript("arguments[0].style.background = 'yellow'", webElement);
+        WaiterUtils.sleepInMilliseconds(200);
+        (Browser.getDriver()).executeScript("arguments[0].style.background = '" + bgColor + "'", webElement);
     }
 }
