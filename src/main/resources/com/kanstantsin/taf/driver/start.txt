@@ -1,3 +1,5 @@
-java -jar  -Dwebdriver.gecko.driver=geckodriver.exe "-Dwebdriver.firefox.bin=C:\Program Files (x86)\Mozilla 50\firefox.exe" selenium-server-standalone-3.0.1.jar -role webdriver -nodeConfig nodeConfig4441.json
+java -jar  -Dwebdriver.gecko.driver=geckodriver.exe "-Dwebdriver.firefox.bin=C:\Program Files (x86)\Mozilla 50\firefox.exe" selenium-server-standalone-3.4.0.jar -role webdriver -nodeConfig nodeConfig4441.json
 
-java -jar selenium-server-standalone-3.0.1.jar -role hub -hubConfig hubConfig_port_4445.json
+java -jar selenium-server-standalone-3.4.0.jar -role hub -hubConfig hubConfig_port_4445.json
+
+mvn clean test -DdriverType=firefox -DforkMode=never "-Dwebdriver.firefox.bin=C:\Program Files (x86)\Mozilla 50\firefox.exe"

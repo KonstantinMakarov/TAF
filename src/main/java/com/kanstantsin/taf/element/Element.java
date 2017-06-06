@@ -23,7 +23,7 @@ public class Element {
     }
 
     public void click() {
-        LOG.info(String.format("Click on '%s'", selector));
+        LOG.info("Click on '{}'", selector);
         waitForDisplayed();
         webElement.click();
     }
