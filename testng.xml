@@ -2,15 +2,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite" parallel="tests" thread-count="2">
-    <test name="ConcurrentTest">
+    <test name="tests.concurrent">
         <classes>
-            <class name="ConcurrentTest" />
-            <class name="ConcurrentTest2" />
+            <class name="tests.concurrent.ConcurrentTest" />
+            <class name="tests.concurrent.ConcurrentTest2" />
         </classes>
     </test>
-    <test name="SimpleTest">
+    <test name="tests.simple">
         <classes>
-            <class name="SimpleTest" />
+            <class name="tests.simple.SimpleTest" />
         </classes>
     </test>
 </suite>
