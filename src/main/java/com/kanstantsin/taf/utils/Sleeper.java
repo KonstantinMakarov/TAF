@@ -7,6 +7,8 @@ public class Sleeper {
 
     protected static final Logger LOG = LoggerFactory.getLogger(Sleeper.class);
 
+    private Sleeper() {}
+
     public static void sleepInMilliseconds(int mSeconds) {
         LOG.info(String.format("Sleeping %s milliseconds...", mSeconds));
         try {

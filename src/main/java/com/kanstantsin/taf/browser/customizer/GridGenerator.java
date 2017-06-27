@@ -1,30 +1,27 @@
 package com.kanstantsin.taf.browser.customizer;
 
+import com.gargoylesoftware.htmlunit.util.UrlUtils;
 import com.google.common.base.Optional;
 import com.kanstantsin.taf.utils.property.GridPropertiesProvider;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class GridGenerator implements DriverGenerator {
-    final String seleniumHost = System.getProperty("selenium_host");
-    final String seleniumPort = System.getProperty("selenium_port");
+    private final String seleniumHost = System.getProperty("selenium_host");
+    private final String seleniumPort = System.getProperty("selenium_port");
+    private static final Logger LOG = LoggerFactory.getLogger(GridGenerator.class);
 
     public RemoteWebDriver generateDriver() {
-        try {
-            if (seleniumHost == null || seleniumPort == null) {
-                return new RemoteWebDriver(new URL(GridPropertiesProvider.URL.getProperty()), createDesiredCapabilities());
-            } else {
-                Optional<URL> url = Optional.of(new URL("http://" + seleniumHost + ":" + seleniumPort + "/wd/hub"));
-                return new RemoteWebDriver(url.get(), createDesiredCapabilities());
-            }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(String.format("Could not create URL with selenium_host=%s and selenium_port=%s\n",
-                                        seleniumHost, seleniumPort)
-                    + e.getMessage());
+        if (seleniumHost == null || seleniumPort == null) {
+            return new RemoteWebDriver(UrlUtils.toUrlSafe(GridPropertiesProvider.URL.getProperty()), createDesiredCapabilities());
+        } else {
+            Optional<URL> url = Optional.of(UrlUtils.toUrlSafe("http://" + seleniumHost + ":" + seleniumPort + "/wd/hub"));
+            return new RemoteWebDriver(url.get(), createDesiredCapabilities());
         }
     }
 

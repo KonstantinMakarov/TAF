@@ -12,17 +12,21 @@ public class WaitUtils {
     public static final int DEFAULT_WAIT_TIME = 60;
     protected static final Logger LOG = LoggerFactory.getLogger(WaitUtils.class);
 
+    private WaitUtils() {}
+
     public static void waitForPageToLoadViaJS(){
         waitForPageToLoadViaJS(DEFAULT_WAIT_TIME);
     }
 
     public static void waitForPageToLoadViaJS(int customWaitTime){
+        LOG.info(String.format("------------------Wait for page to be load in %s seconds", customWaitTime));
         new WebDriverWait(Browser.getDriver(), customWaitTime) {
         }.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
-                return getDocumentReadyState().equals("complete");
+                return "complete".equals(getDocumentReadyState());
             }
         });
+        LOG.info("------------------Page has been loaded");
     }
 
     private static String getDocumentReadyState() {

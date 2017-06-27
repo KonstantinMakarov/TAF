@@ -27,6 +27,7 @@ public class CustomTestListener implements ITestListener {
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+        // don't need to implement this case
     }
 
     public void onStart(ITestContext context) {

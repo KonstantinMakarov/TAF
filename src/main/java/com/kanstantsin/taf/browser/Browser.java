@@ -4,7 +4,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Browser {
 
-    private static ThreadLocal<RemoteWebDriver> thread = new InheritableThreadLocal<RemoteWebDriver>();
+    private static ThreadLocal<RemoteWebDriver> thread = new InheritableThreadLocal<>();
 
     private Browser(){}
 

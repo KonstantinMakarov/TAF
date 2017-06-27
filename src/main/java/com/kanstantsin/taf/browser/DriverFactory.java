@@ -1,6 +1,7 @@
 package com.kanstantsin.taf.browser;
 
 import com.kanstantsin.taf.browser.customizer.*;
+import com.kanstantsin.taf.exceptions.IllegalDriverTypeException;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
@@ -15,13 +16,15 @@ public enum DriverFactory {
     IE(new IEGenerator(), "ie", "IEDriverServer.exe", "ie"),
     GRID(new GridGenerator(), "NONE", "NONE", "grid");
 
-    private static Logger LOG = LoggerFactory.getLogger(DriverFactory.class);
     private DriverGenerator driverClass;
     private String driverTypeKey;
     private String driverTypeValue;
     private String driverType;
-    public final String DRIVER_TYPE_VALUE_WIN = System.getProperty("basedir", System.getProperty("user.dir")) + "\\src\\main\\resources\\com\\kanstantsin\\taf\\driver\\";
-    public final String DRIVER_TYPE_KEY_TEMPLATE = "webdriver.%s.driver";
+
+    private static final Logger LOG = LoggerFactory.getLogger(DriverFactory.class);
+    private final String DRIVER_TYPE_VALUE_WIN = System.getProperty("basedir", System.getProperty("user.dir")) +
+                                                                "\\src\\main\\resources\\com\\kanstantsin\\taf\\driver\\";
+    private static final String DRIVER_TYPE_KEY_TEMPLATE = "webdriver.%s.driver";
 
     DriverFactory(DriverGenerator driver, String driverKey, String driverValue, String driverType) {
         this.driverClass = driver;
@@ -41,7 +44,8 @@ public enum DriverFactory {
                 return customizeGeneratedDriver(browser.driverClass.generateDriver());
             }
         }
-        throw new RuntimeException("Unknown driver type in '-DdriverType' parameter");
+        LOG.error("Unknown driver type in '-DdriverType' parameter");
+        throw new IllegalDriverTypeException();
     }
 
     private static RemoteWebDriver customizeGeneratedDriver(RemoteWebDriver driver) {
