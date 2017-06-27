@@ -1,7 +1,7 @@
 package tests.simple;
 
 import business.page.HomePage;
-import com.kanstantsin.taf.utils.TimeoutUtils;
+import com.kanstantsin.taf.utils.Sleeper;
 import tests.BaseTest;
 import org.testng.annotations.Test;
 
@@ -13,7 +13,7 @@ public class SimpleTest extends BaseTest {
     public void run(){
         driver.get("http://zelotos.ru/");
         homePage.clickOnBouquetLinkByNumber("0420");
-        TimeoutUtils.sleepInSeconds(20);
+        Sleeper.sleepInSeconds(20);
     }
 
 }

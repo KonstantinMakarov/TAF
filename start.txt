@@ -1,0 +1,21 @@
+#to set up node
+java -jar  -Dwebdriver.gecko.driver=geckodriver.exe "-Dwebdriver.firefox.bin=C:\Program Files (x86)\Mozilla 50\firefox.exe" selenium-server-standalone-3.4.0.jar -role webdriver -nodeConfig nodeConfig4441.json
+
+#to set up hub
+java -jar selenium-server-standalone-3.4.0.jar -role hub -hubConfig hubConfig_port_4445.json
+
+#to run tests on Firefox
+mvn clean test -DdriverType=firefox -DforkMode=never "-Dwebdriver.firefox.bin=C:\Program Files (x86)\Mozilla 50\firefox.exe"
+
+#to run tests on Chrome(the same for IE)
+mvn clean test -DdriverType=chrome -DforkMode=never
+
+#to run tests on Grid
+mvn clean test -DdriverType=grid -DforkMode=never
+
+#to generate allure report. Will be generated to d:\TAF\target\site\allure-maven-plugin\index.html
+mvn site
+
+#to run sonar analyser
+    1) Update sonar config d:\Soft\sonar-scanner-2.8\conf\sonar-scanner.properties and restart Sonar
+    2) Open cmd in project sources and run : <b>sonar-runner<b>

@@ -1,7 +1,8 @@
 package com.kanstantsin.taf.element;
 
 import com.kanstantsin.taf.browser.Browser;
-import com.kanstantsin.taf.utils.WaiterUtils;
+import com.kanstantsin.taf.utils.Sleeper;
+import com.kanstantsin.taf.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ public class Element {
 
     private By selector;
     private WebElement webElement;
+    private final int HIGHLIGHT_PAUSE_MILLISECONDS = 200;
 
     public Element (By selector){
         this.selector = selector;
@@ -29,8 +31,8 @@ public class Element {
     }
 
     protected void waitForDisplayed() {
-        WaiterUtils.waitForPageToLoadViaJS();
-        Wait<WebDriver> wait = new WebDriverWait(Browser.getDriver(), WaiterUtils.DEFAULT_WAIT_TIME);
+        WaitUtils.waitForPageToLoadViaJS();
+        Wait<WebDriver> wait = new WebDriverWait(Browser.getDriver(), WaitUtils.DEFAULT_WAIT_TIME);
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
         webElement = Browser.getDriver().findElement(selector);
         highlightElement();
@@ -39,7 +41,7 @@ public class Element {
     public void highlightElement() {
         final String bgColor = webElement.getCssValue("background");
         (Browser.getDriver()).executeScript("arguments[0].style.background = 'yellow'", webElement);
-        WaiterUtils.sleepInMilliseconds(200);
+        Sleeper.sleepInMilliseconds(HIGHLIGHT_PAUSE_MILLISECONDS);
         (Browser.getDriver()).executeScript("arguments[0].style.background = '" + bgColor + "'", webElement);
     }
 }

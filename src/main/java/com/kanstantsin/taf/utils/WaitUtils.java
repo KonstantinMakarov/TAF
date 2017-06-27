@@ -4,10 +4,13 @@ import com.kanstantsin.taf.browser.Browser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class WaiterUtils {
+public class WaitUtils {
 
     public static final int DEFAULT_WAIT_TIME = 60;
+    protected static final Logger LOG = LoggerFactory.getLogger(WaitUtils.class);
 
     public static void waitForPageToLoadViaJS(){
         waitForPageToLoadViaJS(DEFAULT_WAIT_TIME);
@@ -24,17 +27,5 @@ public class WaiterUtils {
 
     private static String getDocumentReadyState() {
         return (String) (Browser.getDriver()).executeScript("return document.readyState");
-    }
-
-    public static void sleepInMilliseconds(int mSeconds) {
-        try {
-            Thread.sleep(mSeconds);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void sleepInSeconds(int seconds) {
-        sleepInMilliseconds(1000 * seconds);
     }
 }
