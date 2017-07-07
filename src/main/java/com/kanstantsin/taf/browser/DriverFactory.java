@@ -52,7 +52,7 @@ public enum DriverFactory {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(
                 org.apache.commons.lang3.StringUtils.isNumeric(System.getProperty("IMPLICITLY_WAIT_SEC"))
-                        ? NumberUtils.toInt(System.getProperty("IMPLICITLY_WAIT_SEC")) : 20,
+                        ? NumberUtils.toInt(System.getProperty("IMPLICITLY_WAIT_SEC")) : 0,
                 TimeUnit.SECONDS);
         return driver;
     }

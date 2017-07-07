@@ -6,12 +6,12 @@ import com.kanstantsin.taf.element.Element;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class ConcurrentTest2 extends BaseTest {
+public class SecondConcurrentTest extends BaseTest {
 
     @Test
     public void run(){
         driver.get("http://www.google.com");
-        new Element(By.xpath("//input[@value='Мне пашчасціць']")).click();
+        new Element(By.xpath("//input[@value='Мне не пашчасціць']")).click();
         Sleeper.sleepInSeconds(20);
     }
 

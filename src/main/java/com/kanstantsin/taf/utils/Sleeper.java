@@ -10,7 +10,7 @@ public class Sleeper {
     private Sleeper() {}
 
     public static void sleepInMilliseconds(int mSeconds) {
-        LOG.info(String.format("Sleeping %s milliseconds...", mSeconds));
+        LOG.info(String.format("Sleeping %s seconds...", (float) mSeconds / 1000));
         try {
             Thread.sleep(mSeconds);
         } catch (InterruptedException e) {
@@ -20,7 +20,6 @@ public class Sleeper {
     }
 
     public static void sleepInSeconds(int seconds){
-        LOG.info(String.format("Sleeping %s seconds...", seconds));
         sleepInMilliseconds(seconds * 1000);
     }
 }

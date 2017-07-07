@@ -6,15 +6,12 @@ import com.kanstantsin.taf.utils.property.GridPropertiesProvider;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 
 public class GridGenerator implements DriverGenerator {
     private final String seleniumHost = System.getProperty("selenium_host");
     private final String seleniumPort = System.getProperty("selenium_port");
-    private static final Logger LOG = LoggerFactory.getLogger(GridGenerator.class);
 
     public RemoteWebDriver generateDriver() {
         if (seleniumHost == null || seleniumPort == null) {

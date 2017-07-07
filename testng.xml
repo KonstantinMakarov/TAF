@@ -5,12 +5,12 @@
     <test name="tests.concurrent">
         <classes>
             <class name="tests.concurrent.ConcurrentTest" />
-            <class name="tests.concurrent.ConcurrentTest2" />
+            <class name="tests.concurrent.SecondConcurrentTest" />
         </classes>
     </test>
-    <test name="tests.simple">
+    <test name="tests.factory">
         <classes>
-            <class name="tests.simple.SimpleTest" />
+            <class name="tests.factory.FactoryOfTest" />
         </classes>
     </test>
 </suite>
